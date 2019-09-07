@@ -1,7 +1,7 @@
 function studentClicked() {
-    alert("student");
+    window.location.href = "studentlanding.html";
 }
 
 function corpsClicked() {
-    alert("corps");
+    window.location.href = "corpslanding.html";
 }
