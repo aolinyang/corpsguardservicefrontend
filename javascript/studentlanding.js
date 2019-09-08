@@ -1,12 +1,16 @@
 var map;
 var marker;
 var curLocation;
-var name;
+var fname;
+var lname;
 var phone;
 
 function pickMeUp() {
-    query = "name=" + name + "&phone=" + phone + "&currentlat=" + curLocation.lat + "&currentlong=" + curLocation.lng + "&destlat=" + marker.getPosition().lat() + "&destlong=" + marker.getPosition().lng();
-    
+    fname = document.getElementById("firstname").value;
+    lname = document.getElementById("lastname").value;
+    phone = document.getElementById("phonenum").value;
+    query = "fname=" + fname + "&lname=" + lname + "&phone=" + phone + "&currentlat=" + curLocation.lat + "&currentlong=" + curLocation.lng + "&destlat=" + marker.getPosition().lat() + "&destlong=" + marker.getPosition().lng();
+    alert(query);
     fetch("http://localhost:7000?" + query, {
         method: "PUT",
         headers: {
@@ -19,20 +23,12 @@ function pickMeUp() {
 }
 
 function start() {
-	initFields();
 	initMap();
-}
-
-function initFields() {
-	var x = document.createElement("INPUT");
-	x.setAttribute("type", "text");
-	x.setAttribute("value", "Hello World!");
-	document.body.appendChild(x);
 }
 
 function initMap() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showPosition, error, {enableHighAccuracy: true});
     }
 }
 
@@ -45,10 +41,16 @@ function showPosition(position) {
     });
 }
 
+function error(err) {
+    console.warn("rip");
+}
+
 function changeMarker(location) {
     marker.setMap(null);
     marker = new google.maps.Marker({
         position: location,
         map: map
     });
+    console.log(marker.getPosition().lat());
+    console.log(marker.getPosition().lng());
 }
