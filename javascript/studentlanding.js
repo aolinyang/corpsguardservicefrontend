@@ -11,7 +11,7 @@ function pickMeUp() {
     phone = document.getElementById("phonenum").value;
     query = "fname=" + fname + "&lname=" + lname + "&phone=" + phone + "&currentlat=" + curLocation.lat + "&currentlong=" + curLocation.lng + "&destlat=" + marker.getPosition().lat() + "&destlong=" + marker.getPosition().lng();
     alert(query);
-    fetch("http://localhost:7071/api/HttpTrigger?" + query, {
+    fetch("https://corpsguardservicebackend.azurewebsites.net/api/HttpTrigger?" + query, {
         method: "POST",
         headers: {
             accept: "application/json"

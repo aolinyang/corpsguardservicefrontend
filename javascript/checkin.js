@@ -26,7 +26,7 @@ function checkIn() {
 
     alert(query);
 
-    fetch("http://localhost:7071/api/HttpTrigger" + "?" + query, {
+    fetch("https://corpsguardservicebackend.azurewebsites.net/api/HttpTrigger" + "?" + query, {
         method: "POST",
         headers: {
             accept: "application/json"
