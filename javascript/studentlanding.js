@@ -35,6 +35,8 @@ function initMap() {
 function showPosition(position) {
     curLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
     map = new google.maps.Map(document.getElementById('map'), { zoom: 19, center: curLocation });
+    var marker1 = new google.maps.Marker({ position: curLocation, map: map, icon: {                             
+        url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"                           } });
     marker = new google.maps.Marker({ position: curLocation, map: map });
     map.addListener('click', function (e) {
         changeMarker(e.latLng);
